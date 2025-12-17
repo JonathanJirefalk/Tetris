@@ -8,11 +8,13 @@ class LBlock : public Block
         {
             id = 1;
             //Different cells in that will be occupied depending on rotation. 1st number is Vertical, and 2nd is Horizontal
-            //So (0, 2) is top right, and (2, 0) is bottom left of a 3x3 grid
+            //So (0, 2) is top right, and (2, 0) is bottom left
             cells[0] = {Position(0, 2), Position(1, 0), Position(1, 1), Position(1, 2)};
             cells[1] = {Position(0, 1), Position(1, 1), Position(2, 1), Position(2, 2)};
             cells[2] = {Position(1, 0), Position(1, 1), Position(1, 2), Position(2, 0)};
             cells[3] = {Position(0, 0), Position(0, 1), Position(1, 1), Position(2, 1)};
+            //This move is made so that the blocks spawn in the top middle, and not top left of the grid
+            Move(0, 3);
         }
 };
 
@@ -26,6 +28,7 @@ class JBlock : public Block
             cells[1] = {Position(0, 1), Position(0, 2), Position(1, 1), Position(2, 1)};
             cells[2] = {Position(1, 0), Position(1, 1), Position(1, 2), Position(2, 2)};
             cells[3] = {Position(0, 1), Position(1, 1), Position(2, 0), Position(2, 1)};
+            Move(0, 3);
         }
 };
 
@@ -39,6 +42,7 @@ class IBlock : public Block
             cells[1] = {Position(0, 2), Position(1, 2), Position(2, 2), Position(3, 2)};
             cells[2] = {Position(2, 0), Position(2, 1), Position(2, 2), Position(2, 3)};
             cells[3] = {Position(0, 1), Position(1, 1), Position(2, 1), Position(3, 1)};
+            Move(-1, 3);
         }
 };
 
@@ -50,6 +54,7 @@ class OBlock : public Block
             id = 4;
             //The same cells are filled whatever rotation it is in, so only one row needed here :)
             cells[0] = {Position(0, 0), Position(0, 1), Position(1, 0), Position(1, 1)};
+            Move(0, 4);
         }
 };
 
@@ -63,6 +68,7 @@ class SBlock : public Block
             cells[1] = {Position(0, 1), Position(1, 1), Position(1, 2), Position(2, 2)};
             cells[2] = {Position(1, 1), Position(1, 2), Position(2, 0), Position(2, 1)};
             cells[3] = {Position(0, 0), Position(1, 0), Position(1, 1), Position(2, 1)};
+            Move(0, 3);
         }
 };
 
@@ -76,6 +82,7 @@ class TBlock : public Block
             cells[1] = {Position(0, 1), Position(1, 1), Position(1, 2), Position(2, 1)};
             cells[2] = {Position(1, 0), Position(1, 1), Position(1, 2), Position(2, 1)};
             cells[3] = {Position(0, 1), Position(1, 0), Position(1, 1), Position(2, 1)};
+            Move(0, 3);
         }
 };
 
@@ -89,5 +96,6 @@ class ZBlock : public Block
             cells[1] = {Position(0, 2), Position(1, 1), Position(1, 2), Position(2, 1)};
             cells[2] = {Position(1, 0), Position(1, 1), Position(2, 1), Position(2, 2)};
             cells[3] = {Position(0, 1), Position(1, 0), Position(1, 1), Position(2, 0)};
+            Move(0, 3);
         }
 };
