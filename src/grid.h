@@ -10,6 +10,7 @@ class Grid
         int grid[20][10];
         
         bool IsCellOutOfBounds(int row, int column);
+        bool IsCellAvailable(int row, int column);
         void Initialize();
         void Print();
         void Draw();
