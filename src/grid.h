@@ -8,10 +8,12 @@ class Grid
         Grid();
         
         int grid[20][10];
-
+        
+        bool IsCellOutOfBounds(int row, int column);
         void Initialize();
         void Print();
         void Draw();
+        
 
     private:
         int numRows;

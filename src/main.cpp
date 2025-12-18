@@ -10,6 +10,7 @@ int main()
 
     while(WindowShouldClose() == false){
 
+        gameFunctions.InputHandler();
         BeginDrawing();
         ClearBackground(BLACK);
         gameFunctions.Draw();
