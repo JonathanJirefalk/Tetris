@@ -18,6 +18,8 @@ int main()
 {
     InitWindow(600, 600, "Tetris Game");
     SetTargetFPS(60);
+
+    Font font = LoadFontEx("Font/monogram.ttf", 64, 0, 0);
     
     GameFunctions gameFunctions = GameFunctions();
 
@@ -30,6 +32,13 @@ int main()
         }
         BeginDrawing();
         ClearBackground(BLACK);
+        DrawTextEx(font, "Score", {405, 15}, 38, 2, WHITE);
+        DrawTextEx(font, "Next", {415, 150}, 38, 2, WHITE);
+        if(gameFunctions.gameOver)
+        {
+            DrawTextEx(font, "GAME OVER", {360, 450}, 38, 2, WHITE);
+            DrawTextEx(font, "PRESS 'ENTER' TO RESTART", {340, 500}, 14, 2, WHITE);
+        }
         gameFunctions.Draw();
         EndDrawing();
     }
