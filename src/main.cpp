@@ -1,5 +1,6 @@
 #include <raylib.h>
 #include "gameFunctions.h"
+#include <iostream>
 
 double lastUpdate = 0;
 
@@ -33,6 +34,11 @@ int main()
         BeginDrawing();
         ClearBackground(BLACK);
         DrawTextEx(font, "Score", {405, 15}, 38, 2, WHITE);
+
+        char scoreText[10];
+        sprintf(scoreText, "%d", gameFunctions.score);
+
+        DrawTextEx(font, scoreText, {405, 50}, 38, 2, WHITE);
         DrawTextEx(font, "Next", {415, 150}, 38, 2, WHITE);
         if(gameFunctions.gameOver)
         {

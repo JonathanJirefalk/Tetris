@@ -14,6 +14,7 @@ class GameFunctions
         void MoveBlockDown();
         Grid grid;
         bool gameOver;
+        int score;
 
     private:
         bool IsBlockOutOfBounds();
@@ -21,6 +22,7 @@ class GameFunctions
         void RotateBlock();
         void LockBlock();
         void RestartGame();
+        void UpdateScore(int linesCleared);
         std::vector<Block> blocks;
         Block currentBlock;
         Block nextBlock;

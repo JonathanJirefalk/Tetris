@@ -8,6 +8,7 @@ GameFunctions::GameFunctions()
     currentBlock = GetRandomBlock();
     nextBlock = GetRandomBlock();
     gameOver = false;
+    score = 0;
 }
 
 Block GameFunctions::GetRandomBlock()
@@ -158,14 +159,36 @@ void GameFunctions::LockBlock()
         gameOver = true;
     }
     nextBlock = GetRandomBlock();
-    grid.ClearRows();
+    int rowsCleared = grid.ClearRows();
+    UpdateScore(rowsCleared);
 }
 
 void GameFunctions::RestartGame()
 {
     grid.Initialize();
-
+    score = 0;
     blocks = GetAllBlocks();
     currentBlock = GetRandomBlock();
     nextBlock = GetRandomBlock();
+}
+
+void GameFunctions::UpdateScore(int linesCleared)
+{
+    switch(linesCleared)
+    {
+    case 1:
+        score += 100;
+        break;
+    case 2:
+        score += 250;
+        break;
+    case 3: 
+        score += 500;
+        break;
+    case 4:
+        score += 1000;
+        break;
+    default:
+        break;
+    }
 }
