@@ -128,4 +128,5 @@ void GameFunctions::LockBlock()
     }
     currentBlock = nextBlock;
     nextBlock = GetRandomBlock();
+    grid.ClearRow();
 }

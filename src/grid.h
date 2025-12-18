@@ -14,13 +14,17 @@ class Grid
         void Initialize();
         void Print();
         void Draw();
+        int ClearRow();
+        
         
 
     private:
         int numRows;
         int numCols;
         int cellSize;
-
+        bool IsRowFull(int row);
+        void ClearRow(int row);
+        void MoveRowDown(int row, int numberOfRows);
         std::vector<Color> colors;
 
 };
