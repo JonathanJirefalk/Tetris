@@ -1,23 +1,18 @@
 #include <raylib.h>
-#include "grid.h"
-#include "blocks.cpp"
+#include "gameFunctions.h"
 
 int main() 
 {
     InitWindow(300, 600, "Tetris Game");
     SetTargetFPS(60);
-
-    Grid grid = Grid();
-    grid.Print();
-
-    TBlock block = TBlock();
     
+    GameFunctions gameFunctions = GameFunctions();
+
     while(WindowShouldClose() == false){
 
         BeginDrawing();
         ClearBackground(BLACK);
-        grid.Draw();
-        block.Draw();
+        gameFunctions.Draw();
         EndDrawing();
     }
 
