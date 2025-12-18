@@ -7,8 +7,7 @@ class LBlock : public Block
         LBlock()
         {
             id = 1;
-            //Different cells in that will be occupied depending on rotation. 1st number is Vertical, and 2nd is Horizontal
-            //So (0, 2) is top right, and (2, 0) is bottom left
+            //Different cells that will be occupied depending on rotation. 1st number is rows, and 2nd is columns
             cells[0] = {Position(0, 2), Position(1, 0), Position(1, 1), Position(1, 2)};
             cells[1] = {Position(0, 1), Position(1, 1), Position(2, 1), Position(2, 2)};
             cells[2] = {Position(1, 0), Position(1, 1), Position(1, 2), Position(2, 0)};
