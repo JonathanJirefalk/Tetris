@@ -57,27 +57,27 @@ void Grid::Draw(){
     for (int row = 0; row < numRows; row++){
         for (int column = 0; column < numCols; column++){
 
-            int cellValue = grid[row][column];
-            DrawRectangle(column * cellSize+1, row * cellSize+1, cellSize-1, cellSize-1, colors[cellValue]);
+            int cellColorIndex = grid[row][column];
+            DrawRectangle(column * cellSize+1, row * cellSize+1, cellSize-1, cellSize-1, colors[cellColorIndex]);
         }
     }
 }
 
-int Grid::ClearRow()
+int Grid::ClearRows()
 {
-    int completed = 0;
+    int numRowsCleared = 0;
     for (int row = numRows-1; row >= 0; row--)
     {
         if (IsRowFull(row)){
             ClearRow(row);
-            completed++;
+            numRowsCleared++;
         }
-        else if (completed > 0)
+        else if (numRowsCleared > 0)
         {
-            MoveRowDown(row, completed);
+            MoveRowDown(row, numRowsCleared);
         }
     }
-    return completed;
+    return numRowsCleared;
 }
 
 bool Grid::IsRowFull(int row)
@@ -100,11 +100,11 @@ void Grid::ClearRow(int row)
     }
 }
 
-void Grid::MoveRowDown(int row, int numberOfRows)
+void Grid::MoveRowDown(int row, int numRowsToMove)
 {
     for (int column = 0; column < numCols; column++)
     {
-        grid[row+numberOfRows][column] = grid[row][column];
+        grid[row+numRowsToMove][column] = grid[row][column];
         grid[row][column] = 0;
     }
 }

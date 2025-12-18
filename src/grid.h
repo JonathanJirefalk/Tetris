@@ -14,7 +14,7 @@ class Grid
         void Initialize();
         void Print();
         void Draw();
-        int ClearRow();
+        int ClearRows();
         
         
 
@@ -24,7 +24,7 @@ class Grid
         int cellSize;
         bool IsRowFull(int row);
         void ClearRow(int row);
-        void MoveRowDown(int row, int numberOfRows);
+        void MoveRowDown(int row, int numRowsToMove);
         std::vector<Color> colors;
 
 };

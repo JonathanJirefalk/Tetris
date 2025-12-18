@@ -38,10 +38,14 @@ void GameFunctions::InputHandler()
 {
     int keyPressed = GetKeyPressed();
 
-    if(keyPressed == KEY_ENTER && gameOver)
+    if(gameOver)
     {
-        gameOver = false;
-        RestartGame();
+        //Show Game Over Screen
+        if(keyPressed == KEY_ENTER)
+        {
+            gameOver = false;
+            RestartGame();
+        }
     }
 
     switch (keyPressed)
@@ -58,9 +62,10 @@ void GameFunctions::InputHandler()
     case KEY_UP:
         RotateBlock();
         break;
-    default:
+    case KEY_ENTER:
+        RestartGame();
         break;
-    }
+    }    
 }
 
 void GameFunctions::MoveBlockLeft()
@@ -153,7 +158,7 @@ void GameFunctions::LockBlock()
         gameOver = true;
     }
     nextBlock = GetRandomBlock();
-    grid.ClearRow();
+    grid.ClearRows();
 }
 
 void GameFunctions::RestartGame()
