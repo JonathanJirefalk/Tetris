@@ -7,6 +7,7 @@ GameFunctions::GameFunctions()
     blocks = GetAllBlocks();
     currentBlock = GetRandomBlock();
     nextBlock = GetRandomBlock();
+    gameOver = false;
 }
 
 Block GameFunctions::GetRandomBlock()
@@ -36,6 +37,13 @@ void GameFunctions::Draw()
 void GameFunctions::InputHandler()
 {
     int keyPressed = GetKeyPressed();
+
+    if(keyPressed == KEY_ENTER && gameOver)
+    {
+        gameOver = false;
+        RestartGame();
+    }
+
     switch (keyPressed)
     {
     case KEY_LEFT:
@@ -57,29 +65,39 @@ void GameFunctions::InputHandler()
 
 void GameFunctions::MoveBlockLeft()
 {
-    currentBlock.Move(0, -1);
-    if(IsBlockOutOfBounds() || !BlockFits())
+    if(!gameOver)
     {
-        currentBlock.Move(0, 1);
+        currentBlock.Move(0, -1);
+        if(IsBlockOutOfBounds() || !BlockFits())
+        {
+            currentBlock.Move(0, 1);
+        }
     }
+    
 }
 
 void GameFunctions::MoveBlockRight()
 {
-    currentBlock.Move(0, 1);
-    if(IsBlockOutOfBounds() || !BlockFits())
+    if(!gameOver)
     {
-        currentBlock.Move(0, -1);
-    }
+        currentBlock.Move(0, 1);
+        if(IsBlockOutOfBounds() || !BlockFits())
+        {
+            currentBlock.Move(0, -1);
+        }
+    }   
 }
 
 void GameFunctions::MoveBlockDown()
 {
-    currentBlock.Move(1, 0);
-    if(IsBlockOutOfBounds() || !BlockFits())
+    if(!gameOver)
     {
-        currentBlock.Move(-1, 0);
-        LockBlock();
+        currentBlock.Move(1, 0);
+        if(IsBlockOutOfBounds() || !BlockFits())
+        {
+            currentBlock.Move(-1, 0);
+            LockBlock();
+        }
     }
 }
 
@@ -112,10 +130,13 @@ bool GameFunctions::BlockFits()
 
 void GameFunctions::RotateBlock()
 {
-    currentBlock.Rotate();
-    if(IsBlockOutOfBounds() || !BlockFits())
+    if(!gameOver)
     {
-        currentBlock.UndoRotation();
+        currentBlock.Rotate();
+        if(IsBlockOutOfBounds() || !BlockFits())
+        {
+            currentBlock.UndoRotation();
+        }
     }
 }
 
@@ -127,6 +148,19 @@ void GameFunctions::LockBlock()
         grid.grid[item.row][item.column] = currentBlock.id;
     }
     currentBlock = nextBlock;
+    if (!BlockFits())
+    {
+        gameOver = true;
+    }
     nextBlock = GetRandomBlock();
     grid.ClearRow();
+}
+
+void GameFunctions::RestartGame()
+{
+    grid.Initialize();
+
+    blocks = GetAllBlocks();
+    currentBlock = GetRandomBlock();
+    nextBlock = GetRandomBlock();
 }

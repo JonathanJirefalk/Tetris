@@ -24,7 +24,7 @@ int main()
     while(WindowShouldClose() == false){
 
         gameFunctions.InputHandler();
-        if(WaitloopFinished(0.2))
+        if(WaitloopFinished(0.02))
         {
             gameFunctions.MoveBlockDown();
         }

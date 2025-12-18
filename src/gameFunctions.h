@@ -13,12 +13,14 @@ class GameFunctions
         void MoveBlockRight();
         void MoveBlockDown();
         Grid grid;
+        bool gameOver;
 
     private:
         bool IsBlockOutOfBounds();
         bool BlockFits();
         void RotateBlock();
         void LockBlock();
+        void RestartGame();
         std::vector<Block> blocks;
         Block currentBlock;
         Block nextBlock;
