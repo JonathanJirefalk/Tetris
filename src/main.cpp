@@ -16,7 +16,7 @@ bool WaitloopFinished(double waitTime)
 
 int main() 
 {
-    InitWindow(300, 600, "Tetris Game");
+    InitWindow(600, 600, "Tetris Game");
     SetTargetFPS(60);
     
     GameFunctions gameFunctions = GameFunctions();
@@ -24,7 +24,7 @@ int main()
     while(WindowShouldClose() == false){
 
         gameFunctions.InputHandler();
-        if(WaitloopFinished(0.02))
+        if(WaitloopFinished(0.2))
         {
             gameFunctions.MoveBlockDown();
         }
