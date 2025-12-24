@@ -46,6 +46,7 @@ int main()
             DrawTextEx(font, "PRESS 'ENTER' TO RESTART", {340, 500}, 14, 2, WHITE);
         }
         gameFunctions.Draw();
+        
         EndDrawing();
     }
 

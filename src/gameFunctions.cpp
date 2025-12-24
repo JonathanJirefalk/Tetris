@@ -32,7 +32,8 @@ std::vector<Block> GameFunctions::GetAllBlocks()
 void GameFunctions::Draw()
 {
     grid.Draw();
-    currentBlock.Draw();
+    currentBlock.Draw(1, 1);
+    nextBlock.Draw(320, 250);
 }
 
 void GameFunctions::InputHandler()
