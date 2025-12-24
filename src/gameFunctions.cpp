@@ -8,6 +8,8 @@ GameFunctions::GameFunctions()
     currentBlock = GetRandomBlock();
     nextBlock = GetRandomBlock();
     gameOver = false;
+    holdingBlockInitiated = false;
+    hasHeldBlock = false;
     score = 0;
 }
 
@@ -26,7 +28,7 @@ Block GameFunctions::GetRandomBlock()
 
 std::vector<Block> GameFunctions::GetAllBlocks()
 {
-    return {IBlock(), JBlock(), LBlock(), OBlock(), SBlock(), TBlock(), ZBlock()};
+    return {LBlock(), JBlock(), IBlock(), OBlock(), SBlock(), TBlock(), ZBlock()};
 }
 
 void GameFunctions::Draw()
@@ -34,6 +36,10 @@ void GameFunctions::Draw()
     grid.Draw();
     currentBlock.Draw(1, 1);
     nextBlock.Draw(320, 250);
+    if(!gameOver)
+    {
+        holdingBlock.Draw(320, 420);
+    }
 }
 
 void GameFunctions::InputHandler()
@@ -67,7 +73,29 @@ void GameFunctions::InputHandler()
     case KEY_ENTER:
         RestartGame();
         break;
+    case KEY_SPACE:
+        if(!hasHeldBlock)
+        {
+            HoldBlock(GetAllBlocks()[currentBlock.id-1]);
+            hasHeldBlock = true;
+        }
+        break;
     }    
+}
+void GameFunctions::HoldBlock(Block current)
+{
+    if(!holdingBlockInitiated)
+    {
+        holdingBlock = current;
+        currentBlock = nextBlock;
+        nextBlock = GetRandomBlock();
+        holdingBlockInitiated = true;
+    }
+    else
+    {
+        currentBlock = holdingBlock;
+        holdingBlock = current;
+    }
 }
 
 void GameFunctions::MoveBlockLeft()
@@ -162,6 +190,7 @@ void GameFunctions::LockBlock()
     nextBlock = GetRandomBlock();
     int rowsCleared = grid.ClearRows();
     UpdateScore(rowsCleared);
+    hasHeldBlock = false;
 }
 
 void GameFunctions::RestartGame()

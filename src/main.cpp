@@ -40,6 +40,10 @@ int main()
 
         DrawTextEx(font, scoreText, {405, 50}, 38, 2, WHITE);
         DrawTextEx(font, "Next", {415, 150}, 38, 2, WHITE);
+        if(gameFunctions.holdingBlockInitiated && !gameFunctions.gameOver)
+        {
+            DrawTextEx(font, "Stored", {410, 350}, 38, 2, WHITE);
+        }
         if(gameFunctions.gameOver)
         {
             DrawTextEx(font, "GAME OVER", {360, 450}, 38, 2, WHITE);
