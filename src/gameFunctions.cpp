@@ -36,7 +36,7 @@ void GameFunctions::Draw()
     grid.Draw();
     currentBlock.Draw(1, 1);
     nextBlock.Draw(320, 250);
-    if(!gameOver)
+    if(!gameOver && holdingBlockInitiated)
     {
         holdingBlock.Draw(320, 420);
     }
@@ -74,7 +74,7 @@ void GameFunctions::InputHandler()
         RestartGame();
         break;
     case KEY_SPACE:
-        if(!hasHeldBlock)
+        if(!hasHeldBlock && !gameOver)
         {
             HoldBlock(GetAllBlocks()[currentBlock.id-1]);
             hasHeldBlock = true;
@@ -200,6 +200,8 @@ void GameFunctions::RestartGame()
     blocks = GetAllBlocks();
     currentBlock = GetRandomBlock();
     nextBlock = GetRandomBlock();
+    hasHeldBlock = false;
+    holdingBlockInitiated = false;
 }
 
 void GameFunctions::UpdateScore(int linesCleared)
