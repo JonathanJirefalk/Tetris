@@ -35,10 +35,27 @@ void GameFunctions::Draw()
 {
     grid.Draw();
     currentBlock.Draw(1, 1);
-    nextBlock.Draw(320, 250);
+
+    if(nextBlock.id == 3 || nextBlock.id == 4)
+    {
+        nextBlock.Draw(300, 250);
+    }
+    else
+    {
+        nextBlock.Draw(320, 250);
+    }
+
     if(!gameOver && holdingBlockInitiated)
     {
-        holdingBlock.Draw(320, 420);
+        if(holdingBlock.id == 3 || holdingBlock.id == 4)
+        {
+            holdingBlock.Draw(300, 420);
+        }
+        else
+        {
+            holdingBlock.Draw(320, 420);
+        }
+        
     }
 }
 

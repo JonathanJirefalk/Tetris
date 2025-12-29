@@ -42,7 +42,7 @@ int main()
         DrawTextEx(font, "Next", {415, 150}, 38, 2, WHITE);
         if(gameFunctions.holdingBlockInitiated && !gameFunctions.gameOver)
         {
-            DrawTextEx(font, "Stored", {410, 350}, 38, 2, WHITE);
+            DrawTextEx(font, "Stored", {400, 350}, 38, 2, WHITE);
         }
         if(gameFunctions.gameOver)
         {
